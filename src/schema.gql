@@ -1,0 +1,18 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ExampleTable {
+  email: String!
+  id: Int!
+  name: String!
+}
+
+type Mutation {
+  createExampleTable(email: String!, name: String!): ExampleTable!
+}
+
+type Query {
+  getAllExampleTable: [ExampleTable!]!
+  getExampleTable(id: Float!): ExampleTable!
+}
