@@ -8,7 +8,7 @@ export class TabelaLocalResolver {
 
   @Query(() => TabelaLocal)
 async tabelaLocalByEmpAndLocal(
-  @Args('cdEmpGrp', { type: () => Int }) cdEmpGrp: number,
+  @Args('cdEmpGrp') cdEmpGrp: number,
   @Args('cdLocal') cdLocal: string,
 ): Promise<TabelaLocal> {
   const result = await this.tabelaLocalService.findOneByEmpAndLocal(cdEmpGrp, cdLocal);
@@ -18,8 +18,8 @@ async tabelaLocalByEmpAndLocal(
   return result;
 }
 
-
-  async tabelaLocais(@Args('cdempgrp', { type: () => Int }) cdempgrp: number): Promise<TabelaLocal[]> {
+  @Query(() => TabelaLocal)
+  async tabelaLocais(@Args('cdempgrp') cdempgrp: number): Promise<TabelaLocal[]> {
     return this.tabelaLocalService.findAll(cdempgrp);
   }
 

@@ -8,7 +8,7 @@ import { AppResolver } from '../Resolvers/graphql.resolver';
 import { ExampleTable } from '../entities/graphql.entity';
 import { typeOrmConfig } from '../database/connection';
 
-
+import { CompanyModule } from '../Company/module/company.module'
 import { TabelaLocal } from '../Company/entity/company.entity';
 import { Todo } from '../entities/todo.entity';
 import { TodoService } from '../services/todo.service';
@@ -34,6 +34,7 @@ const dateScalarMode: DateScalarMode = 'timestamp';
         driver: new GraphQLSchemaBuilderModule(),
       }),
     }),
+    CompanyModule,
   ],
   providers: [AppResolver, TodoService, TodoResolver, TabelaLocalService,TabelaLocalResolver],
 })

@@ -6,11 +6,11 @@ import { DateScalarMode, Field, Int, ObjectType } from '@nestjs/graphql';
 export class TabelaLocal {
 
   
-  @Field(() => Int)
+  @Field()
   @PrimaryColumn({name: 'CDEMPGRP'})
   public CDEMPGRP: number;
     
-  @Field(() => Int)
+  @Field()
   @Column({name: 'CDFILIAL'})
   public CDFILIAL: string;
   
@@ -22,7 +22,7 @@ export class TabelaLocal {
   @Column({name: 'DSLOCAL'})
   public DSLOCAL: string;
 
-  @Field(() => Int)
+  @Field()
   @Column({name: 'NRNIVELLOC'})
   public NRNIVELLOC: number;
 
