@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { ExampleTable } from '../Entitys/graphql.entity';
+import { ExampleTable } from '../entities/graphql.entity';
 
 @Resolver()
 export class AppResolver {

@@ -6,28 +6,17 @@ import { join } from 'path';
 import * as Oracledb from 'oracledb';
 import { ApolloDriver } from '@nestjs/apollo';
 import { AppResolver } from '../Resolvers/graphql.resolver';
-import { ExampleTable } from '../Entitys/graphql.entity';
-import { Todo } from '../Entitys/todo.entity';
+import { ExampleTable } from '../entities/graphql.entity';
+import { Todo } from '../entities/todo.entity';
 import { TodoService } from '../services/todo.service';
 import { TodoResolver } from '../resolvers/todo.resolver';
-
-
+import { typeOrmConfig } from '../database/connection';
 
 const dateScalarMode: DateScalarMode = 'timestamp';
-require('dotenv').config(); // carrega as variáveis de ambiente definidas no arquivo .env
+
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'oracle',
-      host: process.env.DB_HOST,
-      port: 1521,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      sid: process.env.DB_SID,
-      entities: [Todo,ExampleTable],
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(typeOrmConfig),
     TypeOrmModule.forFeature([ExampleTable, Todo]),
     GraphQLModule.forRootAsync({
       driver: ApolloDriver,
