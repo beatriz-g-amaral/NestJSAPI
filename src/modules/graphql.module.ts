@@ -3,21 +3,26 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule, DateScalarMode } from '@nestjs/graphql';
 import { join } from 'path';
-import * as Oracledb from 'oracledb';
 import { ApolloDriver } from '@nestjs/apollo';
 import { AppResolver } from '../Resolvers/graphql.resolver';
 import { ExampleTable } from '../entities/graphql.entity';
+import { typeOrmConfig } from '../database/connection';
+
+
+import { TabelaLocal } from '../Company/entity/company.entity';
 import { Todo } from '../entities/todo.entity';
 import { TodoService } from '../services/todo.service';
 import { TodoResolver } from '../resolvers/todo.resolver';
-import { typeOrmConfig } from '../database/connection';
+import { TabelaLocalResolver } from '../Company/resolver/company.resolver';
+import { TabelaLocalService } from '../Company/service/company.service';
+
 
 const dateScalarMode: DateScalarMode = 'timestamp';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([ExampleTable, Todo]),
+    TypeOrmModule.forFeature([ExampleTable, Todo, TabelaLocal]),
     GraphQLModule.forRootAsync({
       driver: ApolloDriver,
       useFactory: () => ({
@@ -30,6 +35,6 @@ const dateScalarMode: DateScalarMode = 'timestamp';
       }),
     }),
   ],
-  providers: [AppResolver, TodoService, TodoResolver],
+  providers: [AppResolver, TodoService, TodoResolver, TabelaLocalService,TabelaLocalResolver],
 })
 export class GraphQlModule {}

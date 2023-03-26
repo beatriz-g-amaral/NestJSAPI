@@ -21,8 +21,29 @@ type Mutation {
 type Query {
   getAllExampleTable: [ExampleTable!]!
   getExampleTable(id: Float!): ExampleTable!
+  tabelaLocalByEmpAndLocal(cdEmpGrp: Int!, cdLocal: String!): TabelaLocal!
   todos: [TodoDto!]!
 }
+
+type TabelaLocal {
+  CDEMPGRP: Int!
+  CDFILIAL: Int!
+  CDLOCAL: String!
+  DSLOCAL: String!
+  DTATLZ: Timestamp!
+  DTGRV: Timestamp!
+  FOTOLOCAL1: String!
+  FOTOLOCAL2: String!
+  FOTOLOCAL3: String!
+  NRNIVELLOC: Int!
+  STACLANCTO: String!
+  STATIVO: String!
+}
+
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
 
 type TodoDto {
   completed: Boolean!
