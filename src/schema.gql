@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateTodoInput {
+  description: String!
+  title: String!
+}
+
 type ExampleTable {
   email: String!
   id: Int!
@@ -10,9 +15,18 @@ type ExampleTable {
 
 type Mutation {
   createExampleTable(email: String!, name: String!): ExampleTable!
+  createTodo(createTodoInput: CreateTodoInput!): TodoDto!
 }
 
 type Query {
   getAllExampleTable: [ExampleTable!]!
   getExampleTable(id: Float!): ExampleTable!
+  todos: [TodoDto!]!
+}
+
+type TodoDto {
+  completed: Boolean!
+  description: String!
+  id: ID!
+  title: String!
 }
