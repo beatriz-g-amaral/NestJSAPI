@@ -3,7 +3,7 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 @Entity({ name: 'tpt140' }) 
-export class TabelaLocal {
+export class tpt140 {
   @Field()
   @PrimaryColumn({ name: 'CDEMPGRP' })
   public CDEMPGRP: number;

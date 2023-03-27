@@ -9,7 +9,7 @@ import { ExampleTable } from '../entities/graphql.entity';
 import { typeOrmConfig } from '../database/connection';
 
 import { CompanyModule } from '../Company/module/company.module'
-import { TabelaLocal } from '../Company/entity/company.entity';
+import { tpt140 } from '../Company/entity/company.entity';
 import { Todo } from '../entities/todo.entity';
 import { TodoService } from '../services/todo.service';
 import { TodoResolver } from '../resolvers/todo.resolver';
@@ -22,7 +22,7 @@ const dateScalarMode: DateScalarMode = 'timestamp';
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([ExampleTable, Todo, TabelaLocal]),
+    TypeOrmModule.forFeature([ExampleTable, Todo, tpt140]),
     GraphQLModule.forRootAsync({
       driver: ApolloDriver,
       useFactory: () => ({
