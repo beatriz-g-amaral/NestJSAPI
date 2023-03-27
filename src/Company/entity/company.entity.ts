@@ -1,59 +1,56 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
-import { DateScalarMode, Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-@Entity({ name: 'TPT140'})
+@Entity({ name: 'tpt140' }) 
 export class TabelaLocal {
-
-  
   @Field()
-  @PrimaryColumn({name: 'CDEMPGRP'})
+  @PrimaryColumn({ name: 'CDEMPGRP' })
   public CDEMPGRP: number;
-    
+
   @Field()
-  @Column({name: 'CDFILIAL'})
-  public CDFILIAL: string;
-  
+  @PrimaryColumn({ name: 'CDFILIAL' })
+  public CDFILIAL: number;
+
   @Field()
-  @Column({name: 'CDLOCAL'})
+  @PrimaryColumn({ name: 'CDLOCAL' })
   public CDLOCAL: string;
 
   @Field()
-  @Column({name: 'DSLOCAL'})
+  @Column({ name: 'DSLOCAL', nullable: true })
   public DSLOCAL: string;
 
   @Field()
-  @Column({name: 'NRNIVELLOC'})
+  @Column({ name: 'NRNIVELLOC' })
   public NRNIVELLOC: number;
 
   @Field()
-  @Column({name: 'STACLANCTO', default: 'N'})
+  @Column({ name: 'STACLANCTO', default: 'N' })
   public STACLANCTO: string;
 
   @Field()
-  @Column({name: 'STATIVO', default: 'S'})
+  @Column({ name: 'STATIVO', default: 'S' })
   public STATIVO: string;
-  
-  @Field()
+
+  @Field(() => Date)
   @Column({ name: 'DTGRV', default: () => 'CURRENT_TIMESTAMP' })
   DTGRV: Date;
 
-  @Field()
+  @Field(() => Date)
   @Column({ name: 'DTATLZ', default: () => 'CURRENT_TIMESTAMP' })
   DTATLZ: Date;
-  
+
   @Field()
-  @Column({name: 'FOTOLOCAL1',})
+  @Column({ name: 'FOTOLOCAL1', nullable: true })
   public FOTOLOCAL1: string;
 
   @Field()
-  @Column({name: 'FOTOLOCAL2',})
+  @Column({ name: 'FOTOLOCAL2', nullable: true })
   public FOTOLOCAL2: string;
 
-  @Field()
-  @Column({name: 'FOTOLOCAL3',})
-  public FOTOLOCAL3: string;
-  
 
-  
+  @Field()
+  @Column({ name: 'FOTOLOCAL3', nullable: true })
+  public FOTOLOCAL3: string;
+
 }

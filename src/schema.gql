@@ -21,14 +21,14 @@ type Mutation {
 type Query {
   getAllExampleTable: [ExampleTable!]!
   getExampleTable(id: Float!): ExampleTable!
-  tabelaLocais(cdempgrp: Float!): TabelaLocal!
+  tabelaLocais(CDEMPGRP: Float!): TabelaLocal!
   tabelaLocalByEmpAndLocal(cdEmpGrp: Float!, cdLocal: String!): TabelaLocal!
   todos: [TodoDto!]!
 }
 
 type TabelaLocal {
   CDEMPGRP: Float!
-  CDFILIAL: String!
+  CDFILIAL: Float!
   CDLOCAL: String!
   DSLOCAL: String!
   DTATLZ: Timestamp!

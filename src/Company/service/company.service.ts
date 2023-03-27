@@ -10,17 +10,20 @@ export class TabelaLocalService {
     private readonly tabelaLocalRepository: Repository<TabelaLocal>,
   ) {}
 
-  async findOneByEmpAndLocal(cdEmpGrp: number, cdLocal: string): Promise<TabelaLocal> {
+  async findOneByEmpAndLocal(CDEMPGRP: number, cdLocal: string): Promise<TabelaLocal> {
     return this.tabelaLocalRepository.findOne({
-      where: { CDEMPGRP: cdEmpGrp, CDLOCAL: cdLocal },
+      where: { CDEMPGRP: CDEMPGRP, CDLOCAL: cdLocal },
     });
   }
 
-  async findAll(cdEmpGrp: number, ): Promise<TabelaLocal[]> {
-    return this.tabelaLocalRepository.find({
-        where: { CDEMPGRP: cdEmpGrp}});
+  async findAll(CDEMPGRP: number): Promise<TabelaLocal[]> {
+    const locais = await this.tabelaLocalRepository.find({
+      where: { CDEMPGRP: CDEMPGRP },
+    });
+  
+    return locais;
   }
-
+  
   async create(tabelaLocal: TabelaLocal): Promise<TabelaLocal> {
     return this.tabelaLocalRepository.save(tabelaLocal);
   }

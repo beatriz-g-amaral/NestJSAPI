@@ -6,6 +6,6 @@ import { TabelaLocalService } from '../service/company.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TabelaLocal])],
-  providers: [TabelaLocalService, TabelaLocalResolver], // <-- make sure to include TabelaLocalResolver here
+  providers: [TabelaLocalService, TabelaLocalResolver],
 })
 export class CompanyModule {}

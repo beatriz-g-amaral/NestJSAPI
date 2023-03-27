@@ -8,19 +8,19 @@ export class TabelaLocalResolver {
 
   @Query(() => TabelaLocal)
 async tabelaLocalByEmpAndLocal(
-  @Args('cdEmpGrp') cdEmpGrp: number,
+  @Args('cdEmpGrp') CDEMPGRP: number,
   @Args('cdLocal') cdLocal: string,
 ): Promise<TabelaLocal> {
-  const result = await this.tabelaLocalService.findOneByEmpAndLocal(cdEmpGrp, cdLocal);
+  const result = await this.tabelaLocalService.findOneByEmpAndLocal(CDEMPGRP, cdLocal);
   if (!result) {
-    throw new Error(`Could not find TabelaLocal with cdEmpGrp=${cdEmpGrp} and cdLocal=${cdLocal}`);
+    throw new Error(`Could not find TabelaLocal with cdEmpGrp=${CDEMPGRP} and cdLocal=${cdLocal}`);
   }
   return result;
 }
 
   @Query(() => TabelaLocal)
-  async tabelaLocais(@Args('cdempgrp') cdempgrp: number): Promise<TabelaLocal[]> {
-    return this.tabelaLocalService.findAll(cdempgrp);
+  async tabelaLocais(@Args('CDEMPGRP') CDEMPGRP: number): Promise<TabelaLocal[]> {
+    return this.tabelaLocalService.findAll(CDEMPGRP);
   }
 
   //TODO  Fazer o insert e Update
