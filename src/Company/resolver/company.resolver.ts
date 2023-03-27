@@ -9,18 +9,19 @@ export class TabelaLocalResolver {
   @Query(() => tpt140)
 async tabelaLocalByEmpAndLocal(
   @Args('CDEMPGRP') CDEMPGRP: number,
-  @Args('cdLocal') cdLocal: string,
+  @Args('CDLOCAL') CDLOCAL: string,
 ): Promise<tpt140> {
-  const result = await this.tabelaLocalService.findOneByEmpAndLocal(CDEMPGRP, cdLocal);
+  const result = await this.tabelaLocalService.findOneByEmpAndLocal(CDEMPGRP, CDLOCAL);
   if (!result) {
-    throw new Error(`Could not find TabelaLocal with CDEMPGRP=${CDEMPGRP} and cdLocal=${cdLocal}`);
+    throw new Error(`Could not find TabelaLocal with CDEMPGRP=${CDEMPGRP} and CDLOCAL=${CDLOCAL}`);
   }
   return result;
 }
 
   @Query(() => tpt140)
   async tabelaLocais(@Args('CDEMPGRP') CDEMPGRP: number): Promise<tpt140[]> {
-    return this.tabelaLocalService.findAll(CDEMPGRP);
+    return this.tabelaLocalService.findAll(CDEMPGRP)
+    };
   }
 
   //TODO  Fazer o insert e Update
@@ -30,4 +31,4 @@ async tabelaLocalByEmpAndLocal(
   // ): Promise<TabelaLocal> {
   //   return this.tabelaLocalService.create(input);
   // }
-}
+

@@ -7,17 +7,17 @@ import { tpt140 } from '../entity/company.entity';
 export class TabelaLocalService {
   constructor(
     @InjectRepository(tpt140)
-    private readonly tabelaLocalRepository: Repository<tpt140>,
+    private readonly tpt140Repository: Repository<tpt140>,
   ) {}
 
   async findOneByEmpAndLocal(CDEMPGRP: number, cdLocal: string): Promise<tpt140> {
-    return this.tabelaLocalRepository.findOne({
+    return this.tpt140Repository.findOne({
       where: { CDEMPGRP: CDEMPGRP, CDLOCAL: cdLocal },
     });
   }
 
   async findAll(CDEMPGRP: number): Promise<tpt140[]> {
-    const locais = await this.tabelaLocalRepository.find({
+    const locais = await this.tpt140Repository.find({
       where: { CDEMPGRP: CDEMPGRP },
     });
   
@@ -25,6 +25,6 @@ export class TabelaLocalService {
   }
   
   async create(tabelaLocal: tpt140): Promise<tpt140> {
-    return this.tabelaLocalRepository.save(tabelaLocal);
+    return this.tpt140Repository.save(tabelaLocal);
   }
 }
