@@ -36,6 +36,6 @@ const dateScalarMode: DateScalarMode = 'timestamp';
     }),
     CompanyModule,
   ],
-  providers: [AppResolver, TodoService, TodoResolver, TabelaLocalService,TabelaLocalResolver],
+  providers: [AppResolver, TodoService, TodoResolver],
 })
 export class GraphQlModule {}
