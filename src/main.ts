@@ -13,7 +13,7 @@ async function bootstrap() {
     console.log(`Error connecting to database: ${error.message}`);
   }
 
-  await app.listen(3333);
+  await app.listen(3000);
 }
 
 bootstrap();

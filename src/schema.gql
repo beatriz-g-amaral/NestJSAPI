@@ -39,16 +39,16 @@ type TodoDto {
 }
 
 type tpt140 {
-  CDEMPGRP: Float
-  CDFILIAL: Float
-  CDLOCAL: String
-  DSLOCAL: String
-  DTATLZ: Timestamp
-  DTGRV: Timestamp
-  FOTOLOCAL1: String
-  FOTOLOCAL2: String
-  FOTOLOCAL3: String
-  NRNIVELLOC: Float
-  STACLANCTO: String
-  STATIVO: String
+  CDEMPGRP: Float!
+  CDFILIAL: Float!
+  CDLOCAL: String!
+  DSLOCAL: String!
+  DTATLZ: Timestamp!
+  DTGRV: Timestamp!
+  FOTOLOCAL1: String!
+  FOTOLOCAL2: String!
+  FOTOLOCAL3: String!
+  NRNIVELLOC: Float!
+  STACLANCTO: String!
+  STATIVO: String!
 }

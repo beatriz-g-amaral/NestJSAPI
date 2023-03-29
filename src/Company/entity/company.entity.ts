@@ -2,12 +2,8 @@ import { Entity, Column, PrimaryColumn } from 'typeorm';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-@Entity({ name: 'tpt140' }) 
-export class tpt140 {
-  @Field()
-  @PrimaryColumn({ name: 'CDEMPGRP' })
-  public CDEMPGRP: number;
-
+@Entity({ name: 'TPT140' }) 
+export class TPT140 {
   @Field()
   @PrimaryColumn({ name: 'CDFILIAL' })
   public CDFILIAL: number;
