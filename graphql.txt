@@ -1,0 +1,59 @@
+Querys
+
+query{
+  tabelaLocalByEmpAndLocal(CDLOCAL: "128"){
+    CDFILIAL,
+    CDLOCAL,
+    DSLOCAL,
+    NRNIVELLOC,
+    STACLANCTO,
+    STATIVO,
+    DTGRV,
+    DTATLZ,
+  }
+}
+
+mutation {
+  createTabelaLocal(input:{  
+    CDFILIAL: 3,
+    CDLOCAL : "167",
+    DSLOCAL : "LOCAL MUITO LEGAL",
+    NRNIVELLOC: 1,
+    STACLANCTO: "N",
+    STATIVO: "S",
+    DTGRV :"2009-08-05 15:13:00",
+    DTATLZ :"2009-08-05 15:13:00",
+  }){
+    CDFILIAL
+    CDLOCAL
+    DSLOCAL
+    NRNIVELLOC
+    STACLANCTO
+    STATIVO
+    DTGRV
+    DTATLZ
+  }
+}
+
+
+query{
+  tabelaMoedaByEmpAndMoeda(CDCLFMOEDA:1){
+    CDCLFMOEDA,
+    DSCLFMOEDA,
+    DTGRV,
+    DTATLZ,
+  }
+}
+
+query{
+  getAllExampleTable{
+    email,
+    name
+  }
+}
+
+query{
+  tabelaLocais{
+    CDLOCAL
+  }
+}

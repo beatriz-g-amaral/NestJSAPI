@@ -1,6 +1,7 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { TPT001 } from '../entity/user.entity';
 import { TabelaMoedaService } from '../service/user.service';
+import { CreateUserInput} from '../dto/user.input'
 
 @Resolver(() => TPT001)
 export class TabelaMoedaResolver {
@@ -21,13 +22,11 @@ async tabelaMoedaByEmpAndMoeda(
   async tabelaMoeda(): Promise<TPT001[]> {
     return this.tabelaMoedaService.findAll()
     };
+  
+  @Mutation(() => TPT001)
+  async createTabelaMoeda(
+    @Args('input') input: CreateUserInput
+  ): Promise<TPT001> {
+    return this.tabelaMoedaService.create(input);
   }
-
-  //TODO  Fazer o insert e Update
-  // @Mutation(() => TabelaMoeda)
-  // async createTabelaMoeda(
-  //   @Args('input') input: TabelaMoeda
-  // ): Promise<TabelaMoeda> {
-  //   return this.tabelaMoedaService.create(input);
-  // }
-
+}

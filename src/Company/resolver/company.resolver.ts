@@ -1,6 +1,8 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { TPT140 } from '../entity/company.entity';
 import { TabelaLocalService } from '../service/company.service';
+import { CreateLocalInput } from '../dto/create-local.input';
+
 
 @Resolver(() => TPT140)
 export class TabelaLocalResolver {
@@ -21,13 +23,12 @@ async tabelaLocalByEmpAndLocal(
   async tabelaLocais(): Promise<TPT140[]> {
     return this.tabelaLocalService.findAll()
     };
+  
+  @Mutation(() => TPT140)
+  async createTabelaLocal(
+    @Args('input') input: CreateLocalInput
+  ): Promise<TPT140> {
+    return this.tabelaLocalService.create(input);
   }
 
-  //TODO  Fazer o insert e Update
-  // @Mutation(() => TabelaLocal)
-  // async createTabelaLocal(
-  //   @Args('input') input: TabelaLocal
-  // ): Promise<TabelaLocal> {
-  //   return this.tabelaLocalService.create(input);
-  // }
-
+}
