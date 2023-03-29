@@ -6,6 +6,6 @@ import { TabelaMoedaService } from '../service/user.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TPT001])],
-  providers: [TabelaMoedaResolver, TabelaMoedaResolver],
+  providers: [TabelaMoedaResolver, TabelaMoedaService],
 })
 export class UserModule {}

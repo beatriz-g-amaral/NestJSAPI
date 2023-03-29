@@ -13,7 +13,8 @@ import { TPT140 } from '../Company/entity/company.entity';
 import { Todo } from '../entities/todo.entity';
 import { TodoService } from '../services/todo.service';
 import { TodoResolver } from '../resolvers/todo.resolver';
-
+import { UserModule } from '../User/module/user.module'
+import { TPT001 } from '../User/entity/user.entity';
 
 
 
@@ -21,7 +22,7 @@ const dateScalarMode: DateScalarMode = 'timestamp';
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([ExampleTable, Todo, TPT140]),
+    TypeOrmModule.forFeature([ExampleTable, Todo, TPT140, TPT001]),
     GraphQLModule.forRootAsync({
       driver: ApolloDriver,
       useFactory: () => ({
@@ -33,7 +34,7 @@ const dateScalarMode: DateScalarMode = 'timestamp';
         driver: new GraphQLSchemaBuilderModule(),
       }),
     }),
-    CompanyModule,
+    CompanyModule,UserModule,
   ],
   providers: [AppResolver, TodoService, TodoResolver],
 })
