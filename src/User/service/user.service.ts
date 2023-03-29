@@ -10,7 +10,7 @@ export class TabelaMoedaService {
     private readonly TPT001Repository: Repository<TPT001>,
   ) {}
 
-  async findOneByEmpAndLocal(CCDCLFMOEDA: number): Promise<TPT001> {
+  async findOneByEmpAndMoeda(CCDCLFMOEDA: number): Promise<TPT001> {
     return this.TPT001Repository.findOne({
       where: {CDCLFMOEDA: CCDCLFMOEDA },
     });
@@ -22,7 +22,7 @@ export class TabelaMoedaService {
     return locais;
   }
   
-  async create(tabelaLocal: TPT001): Promise<TPT001> {
-    return this.TPT001Repository.save(tabelaLocal);
+  async create(tabelaMoeda: TPT001): Promise<TPT001> {
+    return this.TPT001Repository.save(tabelaMoeda);
   }
 }

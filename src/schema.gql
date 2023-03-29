@@ -21,9 +21,32 @@ type Mutation {
 type Query {
   getAllExampleTable: [ExampleTable!]!
   getExampleTable(id: Float!): ExampleTable!
-  tabelaLocais(CDEMPGRP: Float!): tpt140!
-  tabelaLocalByEmpAndLocal(CDEMPGRP: Float!, CDLOCAL: String!): tpt140!
+  tabelaLocais: TPT140!
+  tabelaLocalByEmpAndLocal(CDLOCAL: String!): TPT140!
+  tabelaMoeda: TPT001!
+  tabelaMoedaByEmpAndMoeda(CDCLFMOEDA: Float!): TPT001!
   todos: [TodoDto!]!
+}
+
+type TPT001 {
+  CDCLFMOEDA: Int!
+  DSCLFMOEDA: String!
+  DTATLZ: Timestamp!
+  DTGRV: Timestamp!
+}
+
+type TPT140 {
+  CDFILIAL: Float!
+  CDLOCAL: String!
+  DSLOCAL: String!
+  DTATLZ: Timestamp!
+  DTGRV: Timestamp!
+  FOTOLOCAL1: String!
+  FOTOLOCAL2: String!
+  FOTOLOCAL3: String!
+  NRNIVELLOC: Float!
+  STACLANCTO: String!
+  STATIVO: String!
 }
 
 """
@@ -36,19 +59,4 @@ type TodoDto {
   description: String!
   id: ID!
   title: String!
-}
-
-type tpt140 {
-  CDEMPGRP: Float!
-  CDFILIAL: Float!
-  CDLOCAL: String!
-  DSLOCAL: String!
-  DTATLZ: Timestamp!
-  DTGRV: Timestamp!
-  FOTOLOCAL1: String!
-  FOTOLOCAL2: String!
-  FOTOLOCAL3: String!
-  NRNIVELLOC: Float!
-  STACLANCTO: String!
-  STATIVO: String!
 }

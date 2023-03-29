@@ -7,27 +7,27 @@ export class TabelaMoedaResolver {
   constructor(private readonly tabelaMoedaService: TabelaMoedaService) {}
 
   @Query(() => TPT001)
-async tabelaLocalByEmpAndLocal(
+async tabelaMoedaByEmpAndMoeda(
   @Args('CDCLFMOEDA') CDCLFMOEDA: number,
 ): Promise<TPT001> {
-  const result = await this.tabelaMoedaService.findOneByEmpAndLocal(CDCLFMOEDA);
+  const result = await this.tabelaMoedaService.findOneByEmpAndMoeda(CDCLFMOEDA);
   if (!result) {
-    throw new Error(`Could not find TabelaLocal with CDCLFMOEDA=${CDCLFMOEDA}`);
+    throw new Error(`Could not find TabelaMoeda with CDCLFMOEDA=${CDCLFMOEDA}`);
   }
   return result;
 }
 
   @Query(() => TPT001)
-  async tabelaLocais(): Promise<TPT001[]> {
+  async tabelaMoeda(): Promise<TPT001[]> {
     return this.tabelaMoedaService.findAll()
     };
   }
 
   //TODO  Fazer o insert e Update
-  // @Mutation(() => TabelaLocal)
-  // async createTabelaLocal(
-  //   @Args('input') input: TabelaLocal
-  // ): Promise<TabelaLocal> {
+  // @Mutation(() => TabelaMoeda)
+  // async createTabelaMoeda(
+  //   @Args('input') input: TabelaMoeda
+  // ): Promise<TabelaMoeda> {
   //   return this.tabelaMoedaService.create(input);
   // }
 
