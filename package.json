@@ -6,6 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "migration:run": "npx typeorm migration:run",
     "migration:generate": "npx dotenv -e .env typeorm migration:generate --n create-todo-table",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

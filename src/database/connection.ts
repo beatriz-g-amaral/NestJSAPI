@@ -9,6 +9,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   database: process.env.DB_DATABASE,
   sid: process.env.DB_SID,
   entities: ["dist/**/*.entity.js"],
+  migrations: ["src/migrations/"],
   synchronize: false,
 };
 
