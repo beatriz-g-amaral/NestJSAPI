@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 @Entity({ name: 'TPT140' })

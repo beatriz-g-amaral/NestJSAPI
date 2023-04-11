@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { TPT001 } from '../entity/user.entity';
 import { TabelaMoedaService } from '../service/user.service';
 import { CreateUserInput } from '../dto/user.input';
