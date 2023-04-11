@@ -1,37 +1,16 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class CreateLocalInput {
+export class CompanyInput {
   @Field()
-  CDFILIAL: number;
-
-  @Field()
-  CDLOCAL: string;
-
-  @Field({ nullable: true })
-  DSLOCAL: string;
+  id: number;
 
   @Field()
-  NRNIVELLOC: number;
+  email: string;
 
   @Field()
-  STACLANCTO: string;
+  created_at: Date;
 
   @Field()
-  STATIVO: string;
-
-  @Field()
-  DTGRV: Date;
-
-  @Field()
-  DTATLZ: Date;
-
-  @Field({ nullable: true })
-  FOTOLOCAL1: string;
-
-  @Field({ nullable: true })
-  FOTOLOCAL2: string;
-
-  @Field({ nullable: true })
-  FOTOLOCAL3: string;
+  updated_at: Date;
 }

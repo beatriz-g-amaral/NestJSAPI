@@ -1,25 +1,23 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { TabelaLocalService } from '../service/company.service';
-import { TPT140 } from '../entity/company.entity';
+import { CompanyService } from '../service/company.service';
+import { Company } from '../entity/company.entity';
 
 @Controller('Company')
-export class TabelaLocalController {
-  constructor(private readonly tabelaLocalService: TabelaLocalService) {}
+export class CompanyController {
+  constructor(private readonly companyService: CompanyService) {}
 
-  @Get(':cdLocal')
-  async findOneByEmpAndLocal(
-    @Param('cdLocal') cdLocal: string,
-  ): Promise<TPT140> {
-    return this.tabelaLocalService.findOneByEmpAndLocal(cdLocal);
+  @Get(':email')
+  async findOneByEmpAndLocal(@Param('email') email: string): Promise<Company> {
+    return this.companyService.findOneByEmail(email);
   }
 
   @Get()
-  async findAll(): Promise<TPT140[]> {
-    return this.tabelaLocalService.findAll();
+  async findAll(): Promise<Company[]> {
+    return this.companyService.findAll();
   }
 
   @Post()
-  async create(@Body() tabelaLocal: TPT140): Promise<TPT140> {
-    return this.tabelaLocalService.create(tabelaLocal);
+  async create(@Body() email: Company): Promise<Company> {
+    return this.companyService.create(email);
   }
 }

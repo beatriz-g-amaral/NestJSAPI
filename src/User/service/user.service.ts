@@ -1,28 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { TPT001 } from '../entity/user.entity';
+import { User } from '../entity/user.entity';
 
 @Injectable()
-export class TabelaMoedaService {
+export class UserService {
   constructor(
-    @InjectRepository(TPT001)
-    private readonly TPT001Repository: Repository<TPT001>,
+    @InjectRepository(User)
+    private readonly UserRepository: Repository<User>,
   ) {}
 
-  async findOneByEmpAndMoeda(CCDCLFMOEDA: number): Promise<TPT001> {
-    return this.TPT001Repository.findOne({
-      where: { CDCLFMOEDA: CCDCLFMOEDA },
+  async findOneByEmail(email: string): Promise<User> {
+    return this.UserRepository.findOne({
+      where: { email: email },
     });
   }
 
-  async findAll(): Promise<TPT001[]> {
-    const locais = await this.TPT001Repository.find();
+  async findAll(): Promise<User[]> {
+    const users = await this.UserRepository.find();
 
-    return locais;
+    return users;
   }
 
-  async create(tabelaMoeda: TPT001): Promise<TPT001> {
-    return this.TPT001Repository.save(tabelaMoeda);
+  async create(newUser: User): Promise<User> {
+    return this.UserRepository.save(newUser);
   }
 }

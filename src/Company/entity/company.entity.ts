@@ -1,50 +1,30 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
-import { Field, ObjectType } from '@nestjs/graphql';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-@ObjectType()
-@Entity({ name: 'TPT140' })
-export class TPT140 {
-  @Field()
-  @PrimaryColumn({ name: 'CDFILIAL' })
-  public CDFILIAL: number;
+@Entity()
+export class Company {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Field()
-  @PrimaryColumn({ name: 'CDLOCAL' })
-  public CDLOCAL: string;
+  @Column({ type: 'varchar', length: 255, unique: true, nullable: false })
+  email: string;
 
-  @Field()
-  @Column({ name: 'DSLOCAL', nullable: true })
-  public DSLOCAL: string;
+  @CreateDateColumn({
+    type: 'timestamptz',
+    nullable: false,
+    default: () => 'now()',
+  })
+  created_at: Date;
 
-  @Field()
-  @Column({ name: 'NRNIVELLOC' })
-  public NRNIVELLOC: number;
-
-  @Field()
-  @Column({ name: 'STACLANCTO', default: 'N' })
-  public STACLANCTO: string;
-
-  @Field()
-  @Column({ name: 'STATIVO', default: 'S' })
-  public STATIVO: string;
-
-  @Field(() => Date)
-  @Column({ name: 'DTGRV', default: () => 'CURRENT_TIMESTAMP' })
-  DTGRV: Date;
-
-  @Field(() => Date)
-  @Column({ name: 'DTATLZ', default: () => 'CURRENT_TIMESTAMP' })
-  DTATLZ: Date;
-
-  @Field()
-  @Column({ name: 'FOTOLOCAL1', nullable: true })
-  public FOTOLOCAL1: string;
-
-  @Field()
-  @Column({ name: 'FOTOLOCAL2', nullable: true })
-  public FOTOLOCAL2: string;
-
-  @Field()
-  @Column({ name: 'FOTOLOCAL3', nullable: true })
-  public FOTOLOCAL3: string;
+  @UpdateDateColumn({
+    type: 'timestamptz',
+    nullable: false,
+    default: () => 'now()',
+  })
+  updated_at: Date;
 }

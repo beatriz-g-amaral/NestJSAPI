@@ -1,22 +1,39 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-@ObjectType()
-@Entity({ name: 'TPT001' })
-export class TPT001 {
-  @Field(() => Int)
-  @PrimaryColumn({ name: 'CDCLFMOEDA' })
-  public CDCLFMOEDA: number;
+@Entity()
+export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Field()
-  @Column({ name: 'DSCLFMOEDA' })
-  public DSCLFMOEDA: string;
+  @Column({ type: 'varchar', length: 255, nullable: false })
+  firstName: string;
 
-  @Field(() => Date)
-  @Column({ name: 'DTGRV', default: () => 'CURRENT_TIMESTAMP' })
-  DTGRV: Date;
+  @Column({ type: 'varchar', length: 255, nullable: false })
+  lastName: string;
 
-  @Field(() => Date)
-  @Column({ name: 'DTATLZ', default: () => 'CURRENT_TIMESTAMP' })
-  DTATLZ: Date;
+  @Column({ type: 'varchar', length: 255, unique: true, nullable: false })
+  email: string;
+
+  @Column({ type: 'varchar', length: 255, nullable: false })
+  password: string;
+
+  @CreateDateColumn({
+    type: 'timestamptz',
+    nullable: false,
+    default: () => 'now()',
+  })
+  created_at: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamptz',
+    nullable: false,
+    default: () => 'now()',
+  })
+  updated_at: Date;
 }

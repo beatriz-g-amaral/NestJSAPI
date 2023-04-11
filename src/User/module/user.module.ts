@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TPT001 } from '../entity/user.entity';
-import { TabelaMoedaResolver } from '../resolver/user.resolver';
-import { TabelaMoedaService } from '../service/user.service';
+import { User } from '../entity/user.entity';
+import { UserResolver } from '../resolver/user.resolver';
+import { UserService } from '../service/user.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TPT001])],
-  providers: [TabelaMoedaResolver, TabelaMoedaService],
+  imports: [TypeOrmModule.forFeature([User])],
+  providers: [UserResolver, UserService],
 })
 export class UserModule {}

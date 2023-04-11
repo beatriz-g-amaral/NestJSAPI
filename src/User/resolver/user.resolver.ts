@@ -1,36 +1,28 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { TPT001 } from '../entity/user.entity';
-import { TabelaMoedaService } from '../service/user.service';
-import { CreateUserInput } from '../dto/user.input';
+import { User } from '../entity/user.entity';
+import { UserService } from '../service/user.service';
+import { UserInput } from '../dto/user.input';
 
-@Resolver(() => TPT001)
-export class TabelaMoedaResolver {
-  constructor(private readonly tabelaMoedaService: TabelaMoedaService) {}
+@Resolver(() => User)
+export class UserResolver {
+  constructor(private readonly userService: UserService) {}
 
-  @Query(() => TPT001)
-  async tabelaMoedaByEmpAndMoeda(
-    @Args('CDCLFMOEDA') CDCLFMOEDA: number,
-  ): Promise<TPT001> {
-    const result = await this.tabelaMoedaService.findOneByEmpAndMoeda(
-      CDCLFMOEDA,
-    );
+  @Query(() => User)
+  async findbyEmail(@Args('email') email: string): Promise<User> {
+    const result = await this.userService.findOneByEmail(email);
     if (!result) {
-      throw new Error(
-        `Could not find TabelaMoeda with CDCLFMOEDA=${CDCLFMOEDA}`,
-      );
+      throw new Error(`Could not find User with email=${email}`);
     }
     return result;
   }
 
-  @Query(() => TPT001)
-  async tabelaMoeda(): Promise<TPT001[]> {
-    return this.tabelaMoedaService.findAll();
+  @Query(() => User)
+  async tabelaMoeda(): Promise<User[]> {
+    return this.userService.findAll();
   }
 
-  @Mutation(() => TPT001)
-  async createTabelaMoeda(
-    @Args('input') input: CreateUserInput,
-  ): Promise<TPT001> {
-    return this.tabelaMoedaService.create(input);
+  @Mutation(() => User)
+  async createTabelaMoeda(@Args('input') input: UserInput): Promise<User> {
+    return this.userService.create(input);
   }
 }

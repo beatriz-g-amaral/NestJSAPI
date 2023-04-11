@@ -1,16 +1,25 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class CreateUserInput {
+export class UserInput {
   @Field()
-  CDCLFMOEDA: number;
+  id: number;
 
   @Field()
-  DSCLFMOEDA: string;
+  firstName: string;
 
   @Field()
-  DTGRV: Date;
+  lastName: string;
 
   @Field()
-  DTATLZ: Date;
+  email: string;
+
+  @Field()
+  password: string;
+
+  @Field()
+  created_at: Date;
+
+  @Field()
+  updated_at: Date;
 }

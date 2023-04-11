@@ -1,32 +1,28 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { TPT140 } from '../entity/company.entity';
-import { TabelaLocalService } from '../service/company.service';
-import { CreateLocalInput } from '../dto/create-local.input';
+import { Company } from '../entity/company.entity';
+import { CompanyService } from '../service/company.service';
+import { CompanyInput } from '../dto/create-local.input';
 
-@Resolver(() => TPT140)
-export class TabelaLocalResolver {
-  constructor(private readonly tabelaLocalService: TabelaLocalService) {}
+@Resolver(() => Company)
+export class CompanyResolver {
+  constructor(private readonly companyService: CompanyService) {}
 
-  @Query(() => TPT140)
-  async tabelaLocalByEmpAndLocal(
-    @Args('CDLOCAL') CDLOCAL: string,
-  ): Promise<TPT140> {
-    const result = await this.tabelaLocalService.findOneByEmpAndLocal(CDLOCAL);
+  @Query(() => Company)
+  async findbyEmail(@Args('email') email: string): Promise<Company> {
+    const result = await this.companyService.findOneByEmail(email);
     if (!result) {
-      throw new Error(`Could not find TabelaLocal with CDLOCAL=${CDLOCAL}`);
+      throw new Error(`Could not find Company with Email=${email}`);
     }
     return result;
   }
 
-  @Query(() => TPT140)
-  async tabelaLocais(): Promise<TPT140[]> {
-    return this.tabelaLocalService.findAll();
+  @Query(() => Company)
+  async findEmails(): Promise<Company[]> {
+    return this.companyService.findAll();
   }
 
-  @Mutation(() => TPT140)
-  async createTabelaLocal(
-    @Args('input') input: CreateLocalInput,
-  ): Promise<TPT140> {
-    return this.tabelaLocalService.create(input);
+  @Mutation(() => Company)
+  async createnewCompany(@Args('input') input: CompanyInput): Promise<Company> {
+    return this.companyService.create(input);
   }
 }
