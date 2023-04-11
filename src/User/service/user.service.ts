@@ -12,16 +12,16 @@ export class TabelaMoedaService {
 
   async findOneByEmpAndMoeda(CCDCLFMOEDA: number): Promise<TPT001> {
     return this.TPT001Repository.findOne({
-      where: {CDCLFMOEDA: CCDCLFMOEDA },
+      where: { CDCLFMOEDA: CCDCLFMOEDA },
     });
   }
 
   async findAll(): Promise<TPT001[]> {
     const locais = await this.TPT001Repository.find();
-  
+
     return locais;
   }
-  
+
   async create(tabelaMoeda: TPT001): Promise<TPT001> {
     return this.TPT001Repository.save(tabelaMoeda);
   }

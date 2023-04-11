@@ -7,7 +7,9 @@ export class TabelaLocalController {
   constructor(private readonly tabelaLocalService: TabelaLocalService) {}
 
   @Get(':cdLocal')
-  async findOneByEmpAndLocal(@Param('cdLocal') cdLocal: string): Promise<TPT140> {
+  async findOneByEmpAndLocal(
+    @Param('cdLocal') cdLocal: string,
+  ): Promise<TPT140> {
     return this.tabelaLocalService.findOneByEmpAndLocal(cdLocal);
   }
 

@@ -6,12 +6,10 @@ import { join } from 'path';
 import { ApolloDriver } from '@nestjs/apollo';
 import { typeOrmConfig } from '../database/connection';
 
-import { CompanyModule } from '../Company/module/company.module'
+import { CompanyModule } from '../Company/module/company.module';
 import { TPT140 } from '../Company/entity/company.entity';
-import { UserModule } from '../User/module/user.module'
+import { UserModule } from '../User/module/user.module';
 import { TPT001 } from '../User/entity/user.entity';
-
-
 
 const dateScalarMode: DateScalarMode = 'timestamp';
 @Module({
@@ -29,7 +27,8 @@ const dateScalarMode: DateScalarMode = 'timestamp';
         driver: new GraphQLSchemaBuilderModule(),
       }),
     }),
-    CompanyModule,UserModule,
+    CompanyModule,
+    UserModule,
   ],
   providers: [],
 })

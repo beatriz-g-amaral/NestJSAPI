@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn } from 'typeorm';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-@Entity({ name: 'TPT140' }) 
+@Entity({ name: 'TPT140' })
 export class TPT140 {
   @Field()
   @PrimaryColumn({ name: 'CDFILIAL' })
@@ -44,9 +44,7 @@ export class TPT140 {
   @Column({ name: 'FOTOLOCAL2', nullable: true })
   public FOTOLOCAL2: string;
 
-
   @Field()
   @Column({ name: 'FOTOLOCAL3', nullable: true })
   public FOTOLOCAL3: string;
-
 }
