@@ -29,6 +29,7 @@
     "@nestjs/graphql": "^11.0.4",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
+    "cors": "^2.8.5",
     "graphql": "^16.6.0",
     "graphql-request": "^5.2.0",
     "oracledb": "^5.5.0",

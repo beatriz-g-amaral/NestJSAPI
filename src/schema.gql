@@ -16,11 +16,6 @@ input CreateLocalInput {
   STATIVO: String!
 }
 
-input CreateTodoInput {
-  description: String!
-  title: String!
-}
-
 input CreateUserInput {
   CDCLFMOEDA: Float!
   DSCLFMOEDA: String!
@@ -28,27 +23,16 @@ input CreateUserInput {
   DTGRV: Timestamp!
 }
 
-type ExampleTable {
-  email: String!
-  id: Int!
-  name: String!
-}
-
 type Mutation {
-  createExampleTable(email: String!, name: String!): ExampleTable!
   createTabelaLocal(input: CreateLocalInput!): TPT140!
   createTabelaMoeda(input: CreateUserInput!): TPT001!
-  createTodo(createTodoInput: CreateTodoInput!): TodoDto!
 }
 
 type Query {
-  getAllExampleTable: [ExampleTable!]!
-  getExampleTable(id: Float!): ExampleTable!
   tabelaLocais: TPT140!
   tabelaLocalByEmpAndLocal(CDLOCAL: String!): TPT140!
   tabelaMoeda: TPT001!
   tabelaMoedaByEmpAndMoeda(CDCLFMOEDA: Float!): TPT001!
-  todos: [TodoDto!]!
 }
 
 type TPT001 {
@@ -76,10 +60,3 @@ type TPT140 {
 `Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
 """
 scalar Timestamp
-
-type TodoDto {
-  completed: Boolean!
-  description: String!
-  id: ID!
-  title: String!
-}
