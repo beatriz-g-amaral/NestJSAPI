@@ -23,12 +23,31 @@ input CreateUserInput {
   DTGRV: Timestamp!
 }
 
+input EmpresaInput {
+  codigo: String!
+  data_pagamento: Timestamp!
+  nome: String!
+  servico: String!
+  situacao_pagamento: String!
+}
+
+type Empresas {
+  codigo: String!
+  data_pagamento: Timestamp!
+  id: ID!
+  nome: String!
+  servico: String!
+  situacao_pagamento: String!
+}
+
 type Mutation {
+  createEmpresa(empresa: EmpresaInput!): Empresas!
   createTabelaLocal(input: CreateLocalInput!): TPT140!
   createTabelaMoeda(input: CreateUserInput!): TPT001!
 }
 
 type Query {
+  empresas: [Empresas!]!
   tabelaLocais: TPT140!
   tabelaLocalByEmpAndLocal(CDLOCAL: String!): TPT140!
   tabelaMoeda: TPT001!

@@ -1,21 +1,20 @@
 {
-    "type": "oracle",
-    "host": "${DB_HOST}",
-    "port": 1521,
-    "username": "${DB_USERNAME}",
-    "password": "${DB_PASSWORD}",
-    "database": "${DB_DATABASE}",
-    "synchronize": true,
-    "logging": true,
-    "entities": [
-      "src/entity/**/*.ts"
-    ],
-    "migrations": [
-      "src/migrations/**/*.ts"
-    ],
-    "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migrations"
-    }
+  "type": "postgres",
+  "host": "silly.db.elephantsql.com",
+  "port": 5432,
+  "username": "ngrnxxko",
+  "password": "XjvmYJYAOeGKq29DUUTXU8-lZuLv0uyC",
+  "database": "ngrnxxko",
+  "synchronize": true,
+  "logging": true,
+  "entities": [
+    "src/entity/**/*.ts"
+  ],
+  "migrations": [
+    "src/migrations/**/*.ts"
+  ],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "src/migrations"
   }
-  
+}

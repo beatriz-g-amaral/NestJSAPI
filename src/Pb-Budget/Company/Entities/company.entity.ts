@@ -1,24 +1,22 @@
-// empresas.entity.ts
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
-@Entity()
-export class Empresa {
-  @PrimaryGeneratedColumn()
+@ObjectType()
+export class Empresas {
+  @Field(() => ID)
   id: number;
 
-  @Column({ length: 255 })
+  @Field()
   nome: string;
 
-  @Column({ length: 10, default: () => 'gen_random_uuid()' })
+  @Field()
   codigo: string;
 
-  @Column({ length: 20 })
+  @Field()
   situacao_pagamento: string;
 
-  @Column()
+  @Field()
   data_pagamento: Date;
 
-  @Column({ length: 255 })
+  @Field()
   servico: string;
 }

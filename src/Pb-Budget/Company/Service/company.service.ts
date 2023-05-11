@@ -1,25 +1,22 @@
-// empresas.service.ts
-
 import { Injectable } from '@nestjs/common';
-import { Empresa } from '../Entities/company.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Empresas } from '../Entities/company.entity';
+import { EmpresaInput } from '../dto/create-company.input';
 
 @Injectable()
 export class EmpresasService {
-  private empresas: Empresa[] = [];
+  constructor(
+    @InjectRepository(Empresas)
+    private readonly empresasRepository: Repository<Empresas>,
+  ) {}
 
-  findAll(): Promise<Empresa[]> {
-    return Promise.resolve(this.empresas);
+  findAll(): Promise<Empresas[]> {
+    return this.empresasRepository.find();
   }
 
-  create(empresa: Empresa): Promise<Empresa> {
-    const newEmpresa: Empresa = { ...empresa, id: this.generateId() };
-    this.empresas.push(newEmpresa);
-    return Promise.resolve(newEmpresa);
-  }
-
-  private generateId(): number {
-    const lastId =
-      this.empresas.length > 0 ? this.empresas[this.empresas.length - 1].id : 0;
-    return lastId + 1;
+  create(empresaInput: EmpresaInput): Promise<Empresas> {
+    const newEmpresa: Empresas = this.empresasRepository.create(empresaInput);
+    return this.empresasRepository.save(newEmpresa);
   }
 }

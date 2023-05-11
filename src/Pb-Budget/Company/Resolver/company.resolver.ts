@@ -1,24 +1,22 @@
-// empresas.service.ts
+// empresas.resolver.ts
 
-import { Injectable } from '@nestjs/common';
-import { Empresa } from '../Entities/company.entity';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Empresas } from '../Entities/company.entity';
+import { EmpresasService } from '../Service/company.service';
+import { EmpresaInput } from '../dto/create-company.input';
 
-@Injectable()
-export class EmpresasService {
-  private empresas: Empresa[] = [];
-zA
-  findAll(): Promise<Empresa[]> {
-    return Promise.resolve(this.empresas);
+@Resolver(() => Empresas)
+export class EmpresasResolver {
+  constructor(private empresasService: EmpresasService) {}
+
+  @Query(() => [Empresas])
+  async empresas(): Promise<Empresas[]> {
+    return this.empresasService.findAll();
   }
-
-  create(empresa: Empresa): Promise<Empresa> {
-    const newEmpresa: Empresa = { ...empresa, id: this.generateId() };
-    this.empresas.push(newEmpresa);
-    return Promise.resolve(newEmpresa);
-  }
-
-  private generateId(): number {
-    const lastId = this.empresas.length > 0 ? this.empresas[this.empresas.length - 1].id : 0;
-    return lastId + 1;
+  @Mutation(() => Empresas)
+  async createEmpresa(
+    @Args('empresa', { type: () => EmpresaInput }) empresaInput: EmpresaInput,
+  ): Promise<Empresas> {
+    return this.empresasService.create(empresaInput);
   }
 }
