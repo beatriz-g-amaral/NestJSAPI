@@ -1,28 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { TPT140 } from '../entity/company.entity';
+import { Empresa } from '../entity/company.entity';
 
 @Injectable()
-export class TabelaLocalService {
+export class EmpresaService {
   constructor(
-    @InjectRepository(TPT140)
-    private readonly TPT140Repository: Repository<TPT140>,
+    @InjectRepository(Empresa)
+    private readonly empresaRepository: Repository<Empresa>,
   ) {}
 
-  async findOneByEmpAndLocal(cdLocal: string): Promise<TPT140> {
-    return this.TPT140Repository.findOne({
-      where: {CDLOCAL: cdLocal },
+  async findOneByCode(codigo: string): Promise<Empresa> {
+    const empresa = await this.empresaRepository.findOne({
+      where: { codigo: codigo },
     });
+    return empresa;
   }
 
-  async findAll(): Promise<TPT140[]> {
-    const locais = await this.TPT140Repository.find();
-  
-    return locais;
+  async findAll(): Promise<Empresa[]> {
+    return this.empresaRepository.find();
   }
-  
-  async create(tabelaLocal: TPT140): Promise<TPT140> {
-    return this.TPT140Repository.save(tabelaLocal);
+
+  async create(empresa: Empresa): Promise<Empresa> {
+    return this.empresaRepository.save(empresa);
   }
 }
