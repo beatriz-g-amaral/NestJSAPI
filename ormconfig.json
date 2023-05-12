@@ -1,7 +1,7 @@
 {
-    "type": "oracle",
+    "type": "postgres",
     "host": "${DB_HOST}",
-    "port": 1521,
+    "port": 5432,
     "username": "${DB_USERNAME}",
     "password": "${DB_PASSWORD}",
     "database": "${DB_DATABASE}",

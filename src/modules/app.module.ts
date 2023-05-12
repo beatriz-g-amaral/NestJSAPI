@@ -7,7 +7,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { typeOrmConfig } from '../database/connection';
 
 import { CompanyModule } from '../Company/module/company.module';
-import { TPT140 } from '../Company/entity/company.entity';
+import { Empresa } from '../Company/entity/company.entity';
 import { UserModule } from '../User/module/user.module';
 import { TPT001 } from '../User/entity/user.entity';
 
@@ -15,7 +15,7 @@ const dateScalarMode: DateScalarMode = 'timestamp';
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([TPT140, TPT001]),
+    TypeOrmModule.forFeature([Empresa, TPT001]),
     GraphQLModule.forRootAsync({
       driver: ApolloDriver,
       useFactory: () => ({

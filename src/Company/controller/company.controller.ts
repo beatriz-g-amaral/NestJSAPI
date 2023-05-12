@@ -8,7 +8,7 @@ export class EmpresaController {
 
   @Get(':id')
   async findOneById(@Param('codigo') codigo: string): Promise<Empresa> {
-    return this.EmpresasService.findOneByCodigo(codigo);
+    return this.EmpresasService.findOneByCode(codigo);
   }
 
   @Get()

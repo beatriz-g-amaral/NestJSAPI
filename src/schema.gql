@@ -2,18 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input CreateLocalInput {
-  CDFILIAL: Float!
-  CDLOCAL: String!
-  DSLOCAL: String
-  DTATLZ: Timestamp!
-  DTGRV: Timestamp!
-  FOTOLOCAL1: String
-  FOTOLOCAL2: String
-  FOTOLOCAL3: String
-  NRNIVELLOC: Float!
-  STACLANCTO: String!
-  STATIVO: String!
+input CreateEmpresaInput {
+  codigo: String!
+  dataPagamento: Timestamp!
+  id: Float!
+  nome: String!
+  servico: String!
+  situacaoPagamento: String!
 }
 
 input CreateUserInput {
@@ -23,14 +18,23 @@ input CreateUserInput {
   DTGRV: Timestamp!
 }
 
+type Empresa {
+  codigo: String!
+  dataPagamento: Timestamp!
+  id: Float!
+  nome: String!
+  servico: String!
+  situacaoPagamento: String!
+}
+
 type Mutation {
-  createTabelaLocal(input: CreateLocalInput!): TPT140!
+  createEmpresa(input: CreateEmpresaInput!): Empresa!
   createTabelaMoeda(input: CreateUserInput!): TPT001!
 }
 
 type Query {
-  tabelaLocais: TPT140!
-  tabelaLocalByEmpAndLocal(CDLOCAL: String!): TPT140!
+  empresaByCodigo(codigo: String!): Empresa!
+  empresas: [Empresa!]!
   tabelaMoeda: TPT001!
   tabelaMoedaByEmpAndMoeda(CDCLFMOEDA: Float!): TPT001!
 }
@@ -40,20 +44,6 @@ type TPT001 {
   DSCLFMOEDA: String!
   DTATLZ: Timestamp!
   DTGRV: Timestamp!
-}
-
-type TPT140 {
-  CDFILIAL: Float!
-  CDLOCAL: String!
-  DSLOCAL: String!
-  DTATLZ: Timestamp!
-  DTGRV: Timestamp!
-  FOTOLOCAL1: String!
-  FOTOLOCAL2: String!
-  FOTOLOCAL3: String!
-  NRNIVELLOC: Float!
-  STACLANCTO: String!
-  STATIVO: String!
 }
 
 """
