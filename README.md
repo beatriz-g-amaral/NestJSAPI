@@ -23,3 +23,35 @@ Tecnologias Utilizadas/ Technologies Used
 
 NestJS, Node, Graphql, Apollo, Typeorm, Oracle.
 
+
+Para executar o projeto, siga as etapas abaixo:
+
+Certifique-se de que você possui o Node.js instalado em sua máquina. Você pode baixar a versão mais recente do Node.js em https://nodejs.org.
+
+Clone o repositório do projeto do GitHub:
+
+bash
+Copy code
+git clone https://github.com/seu-usuario/nestjsapi.git
+Navegue até o diretório do projeto:
+
+bash
+Copy code
+cd nestjsapi
+Instale as dependências do projeto utilizando o npm (ou yarn, se preferir):
+
+Copy code
+npm install
+Configure as variáveis de ambiente necessárias. Geralmente, isso envolve a configuração das credenciais de acesso ao banco de dados Oracle. Verifique o arquivo .env ou um arquivo de configuração semelhante para definir as variáveis necessárias.
+
+Execute o projeto:
+
+arduino
+Copy code
+npm run start
+Isso iniciará o servidor da API. Você verá mensagens de log indicando que o servidor está em execução e escutando em uma porta específica.
+
+Agora você pode fazer solicitações para a API por meio de ferramentas como o Postman ou um navegador da web. Certifique-se de verificar a documentação do projeto para obter informações sobre as rotas e os recursos disponíveis.
+
+Lembre-se de substituir "seu-usuario" pelo seu nome de usuário no comando de clonagem do Git.
+
