@@ -24,4 +24,11 @@ export class EmpresaService {
   async create(empresa: Empresa): Promise<Empresa> {
     return this.empresaRepository.save(empresa);
   }
+
+  async delete(codigo: string): Promise<Empresa> {
+    const empresa = await this.empresaRepository.findOne({
+      where: { codigo: codigo },
+    });
+    return this.empresaRepository.remove(empresa);
+  }
 }

@@ -30,6 +30,7 @@ type Empresa {
 type Mutation {
   createEmpresa(input: CreateEmpresaInput!): Empresa!
   createTabelaMoeda(input: CreateUserInput!): TPT001!
+  deleteEmpresa(codigo: String!): Empresa!
 }
 
 type Query {

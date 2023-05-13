@@ -41,6 +41,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+files/
+# Remover depois que as imagens estiverem sendo enviadas para um local OK, coloquei isso para nao poluir o projeto
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/

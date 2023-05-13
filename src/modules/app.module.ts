@@ -1,8 +1,14 @@
-import { GraphQLSchemaBuilderModule } from '@nestjs/graphql';
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { GraphQLModule, DateScalarMode } from '@nestjs/graphql';
+import {
+  GraphQLModule,
+  DateScalarMode,
+  GraphQLSchemaBuilderModule,
+} from '@nestjs/graphql';
 import { join } from 'path';
+import { MulterModule } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 import { ApolloDriver } from '@nestjs/apollo';
 import { typeOrmConfig } from '../database/connection';
 
@@ -12,10 +18,14 @@ import { UserModule } from '../User/module/user.module';
 import { TPT001 } from '../User/entity/user.entity';
 
 const dateScalarMode: DateScalarMode = 'timestamp';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
     TypeOrmModule.forFeature([Empresa, TPT001]),
+    MulterModule.register({
+      dest: 'uploads', // Diretório onde os arquivos serão armazenados
+    }),
     GraphQLModule.forRootAsync({
       driver: ApolloDriver,
       useFactory: () => ({

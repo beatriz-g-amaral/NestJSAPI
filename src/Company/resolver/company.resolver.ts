@@ -27,4 +27,13 @@ export class EmpresaResolver {
   ): Promise<Empresa> {
     return this.empresaService.create(input);
   }
+
+  @Mutation(() => Empresa)
+  async deleteEmpresa(@Args('codigo') codigo: string): Promise<Empresa> {
+    const empresa = await this.empresaService.findOneByCode(codigo);
+    if (!empresa) {
+      throw new Error(`Could not find Empresa with codigo=${codigo}`);
+    }
+    return this.empresaService.delete(codigo);
+  }
 }
