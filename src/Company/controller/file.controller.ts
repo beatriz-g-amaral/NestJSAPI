@@ -1,21 +1,27 @@
+import { diskStorage } from 'multer';
+import { editFileName, imageFileFilter } from '../utilis/file-upload.utils';
+import { EventosService } from '../Events/Services/event.service';
+import { Eventos } from '../Events/Entity/event.entity';
 import {
   Controller,
-  Get,
   Post,
   UseInterceptors,
   UploadedFile,
-  UploadedFiles,
-  Res,
+  Body,
+  Get,
   Param,
+  Res,
 } from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { editFileName, imageFileFilter } from '../utilis/file-upload.utils';
-// import { google } from 'googleapis';
-// import * as fs from 'fs';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('file')
 export class FileController {
+  constructor(private readonly eventoService: EventosService) {}
+  @Get(':imgpath')
+  seeUploadedFile(@Param('imgpath') image, @Res() res) {
+    return res.sendFile(image, { root: './files' });
+  }
+
   @Post('upload')
   @UseInterceptors(
     FileInterceptor('image', {
@@ -26,69 +32,26 @@ export class FileController {
       fileFilter: imageFileFilter,
     }),
   )
-  async uploadedFile(@UploadedFile() file) {
+  async uploadedFile(@UploadedFile() file, @Body() body: any) {
+    const { nome_evento, data_evento, criado_por, evento_id } = body;
+
+    const newEvent: Eventos = {
+      nome_evento,
+      data_evento,
+      imagem: file.filename, // Salve apenas o nome do arquivo
+      data_cadastrada: new Date(),
+      criado_por,
+      evento_id,
+    };
+
+    const createdEvent = await this.eventoService.createEvent(newEvent);
+
     const response = {
       originalname: file.originalname,
       filename: file.filename,
+      event: createdEvent,
     };
-    //  await this.uploadToGoogleDrive(file.path, file.originalname);
+
     return response;
   }
-
-  @Post('multiple')
-  @UseInterceptors(
-    FilesInterceptor('image', 20, {
-      storage: diskStorage({
-        destination: './files',
-        filename: editFileName,
-      }),
-      fileFilter: imageFileFilter,
-    }),
-  )
-  async uploadMultipleFiles(@UploadedFiles() files) {
-    const response = [];
-    for (const file of files) {
-      const fileResponse = {
-        originalname: file.originalname,
-        filename: file.filename,
-      };
-      //await this.uploadToGoogleDrive(file.path, file.originalname);
-      response.push(fileResponse);
-    }
-    return response;
-  }
-
-  @Get(':imgpath')
-  seeUploadedFile(@Param('imgpath') image, @Res() res) {
-    return res.sendFile(image, { root: './files' });
-  }
-
-  /*
-  async uploadToGoogleDrive(filePath, filename) {
-   const credentials = require('../module/googleauth.module');
-   const auth = new google.auth.GoogleAuth({
-     credentials,
-     scopes: ['https://www.googleapis.com/auth/drive.file'],
-   });
-
-   const drive = google.drive({ version: 'v3', auth });
-
-   try {
-     const response = await drive.files.create({
-       requestBody: {
-         name: filename, // Nome do arquivo no Google Drive
-       },
-       media: {
-         body: fs.createReadStream(filePath), // Caminho local do arquivo
-       },
-     });
-
-     console.log('Arquivo enviado para o Google Drive:', response.data);
-   } catch (error) {
-     console.error('Erro ao enviar o arquivo para o Google Drive:', error);
-     throw new Error(
-       'Ocorreu um erro ao enviar o arquivo para o Google Drive.',
-     );
-   }
- }*/
 }

@@ -16,7 +16,7 @@ import { CompanyModule } from '../Company/module/company.module';
 import { Empresa } from '../Company/entity/company.entity';
 import { UserModule } from '../User/module/user.module';
 import { TPT001 } from '../User/entity/user.entity';
-
+import { AppGateway } from '../WebChat/webchat.gatweay';
 const dateScalarMode: DateScalarMode = 'timestamp';
 
 @Module({
@@ -40,6 +40,6 @@ const dateScalarMode: DateScalarMode = 'timestamp';
     CompanyModule,
     UserModule,
   ],
-  providers: [],
+  providers: [AppGateway],
 })
 export class AppModule {}
