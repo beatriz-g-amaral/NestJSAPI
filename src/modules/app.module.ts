@@ -13,6 +13,8 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { typeOrmConfig } from '../database/connection';
 
 import { CompanyModule } from '../Company/module/company.module';
+import { FinanceModule } from '../Finances/finance.module';
+
 import { Empresa } from '../Company/entity/company.entity';
 import { UserModule } from '../User/module/user.module';
 import { TPT001 } from '../User/entity/user.entity';
@@ -37,6 +39,7 @@ const dateScalarMode: DateScalarMode = 'timestamp';
         driver: new GraphQLSchemaBuilderModule(),
       }),
     }),
+    FinanceModule,
     CompanyModule,
     UserModule,
   ],
