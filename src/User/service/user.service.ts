@@ -1,28 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { TPT001 } from '../entity/user.entity';
+import { Usuario } from '../entity/user.entity';
+import { FindOneOptions } from 'typeorm';
+import { UsuarioInput } from '../dto/user.input';
 
 @Injectable()
-export class TabelaMoedaService {
+export class UsuarioService {
   constructor(
-    @InjectRepository(TPT001)
-    private readonly TPT001Repository: Repository<TPT001>,
+    @InjectRepository(Usuario)
+    private readonly UsuarioRepository: Repository<Usuario>,
   ) {}
 
-  async findOneByEmpAndMoeda(CCDCLFMOEDA: number): Promise<TPT001> {
-    return this.TPT001Repository.findOne({
-      where: { CDCLFMOEDA: CCDCLFMOEDA },
-    });
+  async login(username: string, password: string) {
+    const options: FindOneOptions<Usuario> = {
+      where: {
+        nomeUsuario: username,
+        senha: password,
+      },
+    };
+    const user = await this.UsuarioRepository.findOne(options);
+    if (user) {
+      return { success: true };
+    } else {
+      return { success: false };
+    }
   }
-
-  async findAll(): Promise<TPT001[]> {
-    const locais = await this.TPT001Repository.find();
-
-    return locais;
-  }
-
-  async create(tabelaMoeda: TPT001): Promise<TPT001> {
-    return this.TPT001Repository.save(tabelaMoeda);
+  async cadastrar(usuarioInput: UsuarioInput): Promise<Usuario> {
+    const novoUsuario = this.UsuarioRepository.create(usuarioInput);
+    return this.UsuarioRepository.save(novoUsuario);
   }
 }

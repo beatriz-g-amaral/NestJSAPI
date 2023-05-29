@@ -11,13 +11,6 @@ input CreateEmpresaInput {
   situacaoPagamento: String!
 }
 
-input CreateUserInput {
-  CDCLFMOEDA: Float!
-  DSCLFMOEDA: String!
-  DTATLZ: Timestamp!
-  DTGRV: Timestamp!
-}
-
 type Empresa {
   codigo: String!
   dataPagamento: Timestamp!
@@ -29,22 +22,12 @@ type Empresa {
 
 type Mutation {
   createEmpresa(input: CreateEmpresaInput!): Empresa!
-  createTabelaMoeda(input: CreateUserInput!): TPT001!
   deleteEmpresa(codigo: String!): Empresa!
 }
 
 type Query {
   empresaByCodigo(codigo: String!): Empresa!
   empresas: [Empresa!]!
-  tabelaMoeda: TPT001!
-  tabelaMoedaByEmpAndMoeda(CDCLFMOEDA: Float!): TPT001!
-}
-
-type TPT001 {
-  CDCLFMOEDA: Int!
-  DSCLFMOEDA: String!
-  DTATLZ: Timestamp!
-  DTGRV: Timestamp!
 }
 
 """

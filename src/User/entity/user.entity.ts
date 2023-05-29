@@ -1,22 +1,28 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+} from 'typeorm';
 
-@ObjectType()
-@Entity({ name: 'TPT001' })
-export class TPT001 {
-  @Field(() => Int)
-  @PrimaryColumn({ name: 'CDCLFMOEDA' })
-  public CDCLFMOEDA: number;
+@Entity('usuarios')
+export class Usuario {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Field()
-  @Column({ name: 'DSCLFMOEDA' })
-  public DSCLFMOEDA: string;
+  @Column({ name: 'nome_usuario', length: 255 })
+  nomeUsuario: string;
 
-  @Field(() => Date)
-  @Column({ name: 'DTGRV', default: () => 'CURRENT_TIMESTAMP' })
-  DTGRV: Date;
+  @Column({ length: 255 })
+  email: string;
 
-  @Field(() => Date)
-  @Column({ name: 'DTATLZ', default: () => 'CURRENT_TIMESTAMP' })
-  DTATLZ: Date;
+  @Column({ length: 255 })
+  senha: string;
+
+  @CreateDateColumn({
+    name: 'criado_em',
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  criadoEm: Date;
 }
